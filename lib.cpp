@@ -48,5 +48,17 @@ void *memcpy(void *dst,const char *str,size_t n)
 
 /****************************************************************/
 
+char *strcpy(char *dst,const char *src)
+{
+    assert(dst != NULL && src != NULL);
 
+    if(src == dst)
+        return dst;
+    char *ptr = dst;
+    while((*dst++ = *src++) != '\0')
+        ;
+    return ptr;
+}
+
+/****************************************************************/
 
