@@ -28,3 +28,25 @@ int atoi(const char *str)
     }
     return sign * ret;
 }
+
+/****************************************************************/
+
+void *memcpy(void *dst,const char *str,size_t n)
+{
+    assert(dst != NULL && src != NULL);
+
+    char *pdst = (char*)dst;
+    const char *psrc = (const char*)src;
+
+    assert(!(pdst <= psrc && psrc < pdst+n));
+    assert(!(psrc <= pdst && pdst < psrc+n));
+
+    while(n--)
+        *pdst++ = *psrc++;
+    return dst;
+}
+
+/****************************************************************/
+
+
+
