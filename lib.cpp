@@ -224,3 +224,41 @@ void *memset(void *str,int c,size_t n)
 
 /****************************************************************/
 
+void computerNext(const char *p,int next[])
+{
+    const int n = strlen(p);
+
+    next[0] = -1;
+    for(int i = 1,j = -1;i < n;i++)
+    {
+        while(j > -1 && p[j+1] != p[i])
+            j = next[j];
+        if(p[i] == p[j+1])
+            j++;
+        next[i] = j;
+    }
+}
+
+int kmp(const char *s,const char *p)
+{
+    const int n = strlen(s);
+    const int m = strlen(p);
+
+    if(n == 0 && m == 0)
+        return 0;
+    if(m == 0)
+        return 0;
+    int next[m];
+    computerNext(p,next);
+
+    for(int i = 0,j = -1;i < n;i++)
+    {
+        while(j > -1 && p[j+1] != s[i])
+            j = next[j];
+        if(s[i] == p[j+1])
+            j++;
+        if(j == m-1)
+            return i - j;
+    }
+    return -1;
+}
