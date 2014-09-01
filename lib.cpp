@@ -184,3 +184,43 @@ char *strncat(char *dst,const char *src,size_t n)
 }
 
 /****************************************************************/
+
+char *strchr(const char *str,char c)
+{
+    assert(str != NULL);
+
+    for(;*str != c;str++)
+        if(*str == '\0')
+            return NULL;
+    return (char*)str;
+}
+
+/****************************************************************/
+
+char *strrchr(const char *str,char c)
+{
+    assert(str != NULL);
+
+    const char *ptr = str;
+    while(*ptr != '\0')
+        ptr++;
+    for(--ptr;*ptr != c;ptr--)
+        if(ptr == str)
+            return NULL;
+    return (char*)ptr;
+}
+
+/****************************************************************/
+
+void *memset(void *str,int c,size_t n)
+{
+    assert(str != NULL);
+
+    char *s = (char*)str;
+    while(n--)
+        *s++ = (char)c;
+    return str;
+}
+
+/****************************************************************/
+
