@@ -140,3 +140,47 @@ int strncmp(const char *s,const char *t)
         s++,t++;
     return *s - *t;
 }
+
+/****************************************************************/
+
+size_t strlen(const char *str)
+{
+    assert(str != NULL);
+
+    const char *ptr = str;
+    while(*ptr != '\0')
+        ptr++;
+    return (ptr - str);
+}
+
+/****************************************************************/
+
+char *strcat(char *dst,const char *src)
+{
+    assert(dst != NULL && src != NULL);
+
+    char *pdst = dst;
+    while(*dst != '\0')
+        dst++;
+    while((*dst++ = *src++) != '\0')
+        ;
+    return pdst;
+}
+
+/****************************************************************/
+
+char *strncat(char *dst,const char *src,size_t n)
+{
+    assert(dst != NULL && src != NULL);
+
+    char *pdst = dst;
+    while(*dst != '\0')
+        dst++;
+    while(n-- && *src != '\0')
+        *dst++ = *src++;
+    *dst = '\0';
+
+    return pdst;
+}
+
+/****************************************************************/
