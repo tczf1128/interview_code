@@ -62,3 +62,38 @@ char *strcpy(char *dst,const char *src)
 
 /****************************************************************/
 
+char *strncpy(char *dst,const hcar *src,size_t n)
+{
+    assert(dst != NULL && src != NULL);
+
+    char *ptr = dst;
+    while(n-- && *src != '\0')
+        *dst++ = *src++;
+    *dst = '\0';
+
+    return ptr;
+}
+
+/****************************************************************/
+
+char *strstr(char *haystack,char *needle)
+{
+    if(needle == NULL || haystack == NULL)
+        return NULL;
+    int i,j;
+    for(i = j = 0;haystack[i] && needle[j];)
+    {
+        if(haystack[i] == needle[j])
+        {
+            i++;
+            j++;
+        }
+        else {
+            i = i - j + 1;
+            j = 0;
+        }
+    }
+    return needle[j] ? NULL : (haystack+i-j);
+}
+
+/****************************************************************/
