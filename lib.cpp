@@ -97,3 +97,26 @@ char *strstr(char *haystack,char *needle)
 }
 
 /****************************************************************/
+
+void *memmove(void *dst,const void *src,size_t n)
+{
+    assert(dst != NULL && src != NULL);
+
+    char *pdst = (char*)dst;
+    const char *psrc = (const char*)src;
+
+    if(pdsti+n <= psrc || pdst >= psrc+n)
+    {
+        while(n--)
+            *pdst++ = *psrc++;
+    }
+    else {
+        pdst += n-1;
+        psrc += n-1;
+        while(n--)
+            *pdst-- = *psrc--;
+    }
+    return dst;
+}
+
+/****************************************************************/
