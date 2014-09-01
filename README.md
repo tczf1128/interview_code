@@ -1,1 +1,1 @@
-### some c lib functions ###
+### some functions in my interview###
