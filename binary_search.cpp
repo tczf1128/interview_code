@@ -142,4 +142,46 @@ bool search_rotate(int A[],int n,int target)
 
 /**********************************************************************/
 
+int find_kth(int A[],int m,int B[],int n,int k)
+{
+    //kth of two sorted arrays,can has duplicates
+    //always assum that m <= n
+    if (m > n)
+        return find_kth(B,n,A,m,k);
+    if (m == 0)
+        return B[k-1];
+    if (k == 1)
+        return min(A[0],B[0]);
+    //divide k into two parts
+    int pa = min(k/2,m),pb = k-pa;
+    if (A[pa-1] < B[pb-1])
+        return find_kth(A+pa,m-pa,B,n,k-pa);
+    else if (A[ps-1] > B[pb-1])
+        return find_kth(A,m,B+pb,n-pb,k-pb);
+    else
+        return A[pa-1];
+}
+
+/**********************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
