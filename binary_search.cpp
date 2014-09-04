@@ -164,6 +164,59 @@ int find_kth(int A[],int m,int B[],int n,int k)
 
 /**********************************************************************/
 
+//no duplicates ----> see jianzhi offer
+int searchMinInRotateArray(int A[],int n)
+{
+    if (n == 1)
+        return 0;
+    int low = 0,high = n-1;
+    while (low < high-1)
+    {
+        int mid = low + (high-low>>1);
+        if (A[mid] < A[low])
+            high = mid;
+        else
+            low = mid;
+    }
+    return A[low] < A[low+1] ? low : low+1;
+}
+
+int searchKthInRotateArray(int A[],int n,int k)
+{
+    int posMin = searchMinInRotateArray(A,n);
+    return (posMin+k-1)%n;
+}
+int rotateMin(int A[],int n)
+{
+    int low = 0,high = n-1;
+    int mid = low;
+
+    while (A[low] >= A[high])
+    {
+        if (high - low == 1)
+        {
+            mid = high;
+            break;
+        }
+        mid low + (high-low>>1);
+        if (A[low] == A[high] && A[mid] == A[high])
+            return miInOrder(A,low,high);
+        if (A[mid] >= A[low])
+            low = mid;
+        else if (A[mid] <= A[high])
+            high = mid;
+    }
+    return A[mid];
+}
+int miInOrder(int A[],int low,int high)
+{
+    int ret = A[low];
+    for(int i = low+1;i <= high;i++)
+        if (A[i] < ret)
+            ret = A[i];
+    return ret;
+}
+
 
 
 
