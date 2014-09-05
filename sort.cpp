@@ -36,3 +36,33 @@ void binary_insertion_sort(int A[],const int start,const int end)
         A[left] = tmp;
     }
 }
+/**********************************************************************/
+
+void shell_sort(int A[],const int start,const int end)
+{
+    int i,j,gap,tmp;
+
+    for(gap = (end-start>>1);gap > 0;gap >>= 1)
+        for(i = start+gap;i < end;i++)
+        {
+            tmp = A[i];
+            for(j = i-gap;j >= start && tmp < A[j];j -= gap)
+                A[j+gap] = A[j];
+            A[j+gap] = tmp;
+        }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
