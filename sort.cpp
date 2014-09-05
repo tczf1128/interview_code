@@ -52,6 +52,40 @@ void shell_sort(int A[],const int start,const int end)
         }
 }
 
+/**********************************************************************/
+
+void bubble_sort(int A[],const int start,const int end)
+{
+    for(int i = start;i < end-1;i++)
+    {
+        bool exchange = false;
+        for(int j = end-1;j > i;j--)
+            if (A[j-1] > A[j])
+            {
+                int tmp = A[j-1];
+                A[j-1] = A[j];
+                A[j] = tmp;
+                exchange = true;
+            }
+        if (!exchange)
+            return ;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
