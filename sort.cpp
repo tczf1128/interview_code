@@ -72,6 +72,42 @@ void bubble_sort(int A[],const int start,const int end)
     }
 }
 
+/**********************************************************************/
+
+void selection_sort(int A[],const int start,const int end)
+{
+    int i,j;
+
+    for(i = start;i < end;i++)
+    {
+        int pos = i;
+        for(j = i+1;j < end;j++)
+            if (A[j] < A[pos])
+                pos = j;
+        if (pos != i)
+        {
+            int tmp = A[pos];
+            A[pos] = A[i];
+            A[i] = tmp;
+        }
+    }
+}
+
+/**********************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
