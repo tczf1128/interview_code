@@ -157,8 +157,115 @@ void heap_sort(int a[],const int n)
     }
 }
 
+/**********************************************************************/
 
+int partition(int a[],const int start,const int end)
+{
+    const int pivot = a[end-1];
+    int i = start-1,j;
+    for(j = start;j < end-1;j++)
+        if (a[j] <= pivot)
+        {
+            i++;
+            swap(a[i],a[j]);
+        }
+    swap(a[i+1],a[end-1]);
+    return i+1;
+}
+void quick_sort(int a[],const int start,const int end)
+{
+    if (start < end-1)
+    {
+        const int pos = partition(a,start,end);
+        quick_sort(a,start,pos);
+        quick_sort(a,pos+1,end);
+    }
+}
+int rand_partition(int a[],const int start,const int end)
+{
+    int i = random(start,end);  //[start,end)
+    swap(a[i],a[end-1]);
+    return partition(a,start,end);
+}
+/*******************************************************************/
+int partition(int a[],const int start,const int end)
+{
+    int i = start,j = end - 1;
+    const int pivot = a[i];
+    while(i < j)
+    {
+        while(i < j && a[j] >= pivot)
+            j--;
+        a[i] = a[j];
+        while(i < j && a[i] <= pivot)
+            i++;
+        a[j] = a[i];
+    }
+    a[i] = pivot;
+    return i;
+}
+void quick_sort(int a[],const int start,const int end)
+{
+    if(start < end - 1)
+    {
+        const int pos = partition(a,start,end);
+        quick_sort(a,start,pos);
+        quick_sort(a,pos+1,end);
+    }
+}
+/*******************************************************************/
+int median3(int a[],int left,int right)
+{
+    int mid = left + (right-left>>1);
+    if(a[left] > a[mid])
+        swap(a[left],a[mid]);
+    if(a[left] > a[right])
+        swap(a[left],a[right]);
+    if(a[mid] > a[right])
+        swap(a[mid],a[right]);
+    swap(a[mid],a[right-1]);  //hide pivot
+    return a[right-1];
+}
+void insertion_sort(int a[],const int n)
+{
+    int tmp;
+    int i,j;
+    for(i = 1; i < n; i++)
+    {
+        tmp = a[i];
+        for(j = i - 1; j >= 0 && tmp < a[j]; j--)
+            a[j+1] = a[j];
+        a[j+1] = tmp;
+    }
+}
+//[left,right]
+#define Cutoff (3)
+void quick_sort(int a[],const int left,const int right)
+{
+    int i,j;
+    int pivot;
+    if(left + Cutoff <= right)
+    {
+        pivot = median3(a,left,right);
+        i = left,j = right - 1;
+        for(; ;)
+        {
+            while(a[++i] < pivot){}
+            while(a[--j] > pivot){}
+            if(i < j)
+                swap(a[i],a[j]);
+            else
+                break;
+        }
+        swap(a[i],a[right-1]);    //restore pivot
+        quick_sort(a,left,i-1);
+        quick_sort(a,i+1,right);
+    }
+    else
+        insertion_sort(a+left,right-left+1);
+}
 
+/*******************************************************************/
 
 
 
