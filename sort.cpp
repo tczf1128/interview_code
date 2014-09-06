@@ -126,6 +126,36 @@ void merge_sort(int A[],int tmp[],const int start,const int end)
 
 /**********************************************************************/
 
+#define LeftChild(i) (2*(i) + 1)
+
+void percolate_down(int a[],int i,int n)
+{
+    int tmp,child;
+
+    for(tmp = a[i];LeftChild(i) < n;i = child)
+    {
+        child = LeftChild(i);
+        if (child != n-1 && a[child+1] > a[child])
+            child++;
+        if (tmp < a[child])
+            a[i] = a[child];
+        else
+            break;
+    }
+    a[i] = tmp;
+}
+void heap_sort(int a[],const int n)
+{
+    int i;
+
+    for(i = n/2;i >= 0;i--) //build heap
+        percolate_down(a,i,n);
+    for(i = n-1;i > 0;i--)
+    {
+        swap(a[0],a[i]);    //delete max
+        percolate_down(a,0,i);
+    }
+}
 
 
 
