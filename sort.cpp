@@ -95,6 +95,48 @@ void selection_sort(int A[],const int start,const int end)
 
 /**********************************************************************/
 
+void merge(int A[],int tmp[],const int start,const int mid,const int end)
+{
+    int i,j,k;
+
+    for(i = start;i < end;i++)
+        tmp[i] = A[i];
+    i = start,j = mid,k = start;
+    while (i < mid && j < end)
+        if (tmp[i] < tmp[j])
+            A[k++] = tmp[i++];
+        else
+            A[k++] = tmp[j++];
+    while (i < mid)
+        A[k++] = tmp[i++];
+    while (j < end)
+        A[k++] = tmp[j++];
+}
+
+void merge_sort(int A[],int tmp[],const int start,const int end)
+{
+    if (start < end-1)
+    {
+        int mid = start + (end-start>>1);
+        merge_sort(A,tmp,start,mid);
+        merge_sort(A,tmp,mid,end);
+        merge(A,tmp,start,mid,end);
+    }
+}
+
+/**********************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
