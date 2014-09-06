@@ -267,6 +267,35 @@ void quick_sort(int a[],const int left,const int right)
 
 /*******************************************************************/
 
+int merge_count(int a[],int b[],int start,int end)
+{
+    if (start + 1 == end)
+        return 0;
+    int mid = start + (end-start>>1);
+    int i = start;
+    int j = mid;
+    int k = start;
+    int cnt = merge_count(a,b,start,mid) + merge_count(a,b,mid,end);
+
+    while (i < mid && j < end)
+    {
+        if (a[i] <= a[j])
+            b[k++] = a[i++];
+        else
+        {
+            cnt += mid - i;
+            b[k++] = a[j++];
+        }
+    }
+    while (i < mid)
+        b[k++] = a[i++];
+    while (j < end)
+        b[k++] = a[j++];
+    for(i = start;i < end;i++)
+        a[i] = b[i];
+    return cnt;
+}
+
 
 
 
